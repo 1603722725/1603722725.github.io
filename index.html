@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-demo" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/31/demo/" class="article-date">
+  <time datetime="2020-10-31T03:13:14.000Z" itemprop="datePublished">2020-10-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/31/demo/">demo</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="将本地已有项目交由git管理"><a href="#将本地已有项目交由git管理" class="headerlink" title="将本地已有项目交由git管理"></a>将本地已有项目交由git管理</h3><p>git init<br>git add .<br>git commit -m “init”<br>git remote add origin 你的github仓库地址<br>git push</p>
+<p>如果本地仓库关联远程仓库报错，解决方案为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1、git pull origin master --allow-unrelated-histories &#x2F;&#x2F;把远程仓库和本地同步，消除差异</span><br><span class="line"></span><br><span class="line">2、重新add和commit相应文件</span><br><span class="line"></span><br><span class="line">3、git push origin master</span><br></pre></td></tr></table></figure>
+
+<h3 id="commit-之后回退-版本回退"><a href="#commit-之后回退-版本回退" class="headerlink" title="commit 之后回退 版本回退"></a>commit 之后回退 版本回退</h3><p>git reset –soft HEAD^ （非master分支）</p>
+<ul>
+<li><code>HEAD</code>指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令<code>git reset --hard commit_id</code>。</li>
+<li>穿梭前，用<code>git log</code>可以查看提交历史，以便确定要回退到哪个版本。</li>
+<li>要重返未来，用<code>git reflog</code>查看命令历史，以便确定要回到未来的哪个版本。</li>
+</ul>
+<p>![](E:\Learning notes\git_images\git003.png)</p>
+<p>git add 工作-&gt;暂存区</p>
+<p>gitcommit  暂存区-&gt;master</p>
+<h1 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h1><h3 id="创建和合并分支"><a href="#创建和合并分支" class="headerlink" title="创建和合并分支"></a>创建和合并分支</h3><p>创建dev分支并切换dev分支：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b dev</span><br><span class="line">Switched to a new branch &#39;dev&#39;</span><br></pre></td></tr></table></figure>
+
+<p>git checkout 命令加上 -b 表示创建并切换 恒等于以下语句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git branch dev</span><br><span class="line">get checkout dev</span><br><span class="line">Switched to a new branch &#39;dev&#39;</span><br></pre></td></tr></table></figure>
+
+<p>用git branch查看当前分支：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br><span class="line">* dev</span><br><span class="line">master</span><br></pre></td></tr></table></figure>
+
+<p>git branch 会列出所有分支  当前分支前面会标一个*</p>
+<p>切换回master分支：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br><span class="line">Switched to branch &#39;master&#39;</span><br></pre></td></tr></table></figure>
+
+<p>将dev分支的代码与master分支的代码进行合并：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge dev 合并指定分支到当前分支</span><br></pre></td></tr></table></figure>
+
+<p>合并完成后，可以放心的删除dev 分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d dev</span><br></pre></td></tr></table></figure>
+
+<p>删除后查看：git branch</p>
+<p>因为创建，合并和删除分支的速度非常快，所以git 鼓励使用分支完成某个人物，合并后再删除分支，这和直接在master 分支上工作的效果是一样的，但过程更安全。</p>
+<h3 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h3><p>创建新的分支，继续我们新分支的开发：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git switch -c feature</span><br></pre></td></tr></table></figure>
+
+<p>git log查看分支的合并情况</p>
+<h3 id="分支管理策略："><a href="#分支管理策略：" class="headerlink" title="分支管理策略："></a>分支管理策略：</h3><p>创建并切换dev分支：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git switch -c dev</span><br></pre></td></tr></table></figure>
+
+<p>通常，合并分支时，如果可能 git 会使用 Fast forward模式，但是在这种分支下，删除分支后，会丢掉分支信息。</p>
+<p>下面我们实战下用 –no-ff方式的git merge</p>
+<p><strong>在master分支上合并dev</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge --no-ff  -m &quot;merge with no-ff&quot; dev</span><br></pre></td></tr></table></figure>
+
+<p>因为本合并要创建一个新的commit,所以加上 -m 把commit描述写进去。</p>
+<p>![](E:\Learning notes\git_images\git001.png)</p>
+<h3 id="Bug分支"><a href="#Bug分支" class="headerlink" title="Bug分支"></a>Bug分支</h3><p>软件开发的过程中，遇到bug就需要修复，修复是需要创建一个新的临时分支来写代码。</p>
+<p>工作进行到一半，突然需要修复bug ，已经写得代码怎么办？</p>
+<p>git status 查看工作区，会提示该部分代码未提交</p>
+<p>git 提供一个stash功能，可以把当前工作现场”储藏”起来，等以后恢复现场后继续工作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git stash</span><br></pre></td></tr></table></figure>
+
+<p>修复完bug现在要回到dev分支上继续干活了</p>
+<p>git switch dev</p>
+<p>git status</p>
+<p>工作区是干净的 刚才的工作现场存哪里了？</p>
+<p>用git stash list命令看看</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git stash list</span><br><span class="line">stash@&#123;0&#125;: WIP on dev: f52c633 add merge</span><br></pre></td></tr></table></figure>
+
+<p>![](E:\Learning notes\git_images\git002.png)</p>
+<h3 id="Feature分支"><a href="#Feature分支" class="headerlink" title="Feature分支"></a>Feature分支</h3><p>当我们接到一个新的需求时，需要重新创建分支feature-vulcan并在上面完成开发</p>
+<p>一切顺利的话，开发完成，合并到master 删除该分支feature-vulcan</p>
+<p>但是，现在因为某些原因，这个新需求必须取消了</p>
+<p>虽然是白干了，但是该分支必须销毁（未提交）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d feature-vulcan</span><br></pre></td></tr></table></figure>
+
+<p>销毁失败。Git友情提醒，<code>feature-vulcan</code>分支还没有被合并，如果删除，将丢失掉修改，如果要强行删除，需要使用大写的<code>-D</code>参数。。</p>
+<p>现在我们强行删除：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -D feature-vulcan</span><br></pre></td></tr></table></figure>
+
+<p>删除成功！</p>
+<h3 id="多人协作"><a href="#多人协作" class="headerlink" title="多人协作"></a>多人协作</h3><p>查看远程库信息，用git remote 或 git remote -v</p>
+<p>推送分支：git push origin dev</p>
+<p>git branch 查看当前分支</p>
+<p>git push origin <branch-name> 推送分支</p>
+<ul>
+<li>查看远程库信息，使用<code>git remote -v</code>；</li>
+<li>本地新建的分支如果不推送到远程，对其他人就是不可见的；</li>
+<li>从本地推送分支，使用<code>git push origin branch-name</code>，如果推送失败，先用<code>git pull</code>抓取远程的新提交；</li>
+<li>在本地创建和远程分支对应的分支，使用<code>git checkout -b branch-name origin/branch-name</code>，本地和远程分支的名称最好一致；</li>
+<li>建立本地分支和远程分支的关联，使用<code>git branch --set-upstream branch-name origin/branch-name</code>；</li>
+<li>从远程抓取分支，使用<code>git pull</code>，如果有冲突，要先处理冲突。</li>
+</ul>
+<h3 id="Rebase"><a href="#Rebase" class="headerlink" title="Rebase"></a>Rebase</h3><p>多人在同一个分支上协作时，很容易出现冲突。即使没有冲突，后push的童鞋不得不先pull，在本地合并，然后才能push成功。这样导致分支看上去比较凌乱，那么能不能让git的提交历史是一条干净的直线呢？</p>
+<p>当我们的本地分支比远程分支超前n个提交时（n大于0且为正整数）</p>
+<p>用git rebase将当前分支提交到落后的远程分支上</p>
+<ul>
+<li>rebase操作可以把本地未push的分叉提交历史整理成直线；</li>
+<li>rebase的目的是使得我们在查看历史提交的变化时更容易，因为分叉的提交需要三方对比。</li>
+</ul>
+<h1 id="标签管理"><a href="#标签管理" class="headerlink" title="标签管理"></a>标签管理</h1><p>发布一个版本时，我们通常先在版本库中打一个标签（tag），这样，就唯一确定了打标签时刻的版本。将来无论什么时候，取某个标签的版本，就是把那个打标签的时刻的历史版本取出来。所以，标签也是版本库的一个快照。</p>
+<h3 id="创建标签"><a href="#创建标签" class="headerlink" title="创建标签"></a>创建标签</h3><p>git branch 查看所有分支</p>
+<p>git checkout master 切换到打tag的分支</p>
+<p>打tag  :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git tag v1.0</span><br></pre></td></tr></table></figure>
+
+<p>查看所有tag：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git tag</span><br></pre></td></tr></table></figure>
+
+<p>默认标签是打在最新提交的commit上的。有时候，如果忘了打标签，比如，现在已经是周五了，但应该在周一打的标签没有打，怎么办？</p>
+<p>方法是找到历史提交的commit id，然后打上就可以了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git log --pretty&#x3D;oneline --abbrev-commit  查看历史提交</span><br><span class="line">git tag v0.9 f52c633   打tag</span><br></pre></td></tr></table></figure>
+
+<p>查看tag信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">git show v0.9</span><br><span class="line">commit f52c63349bc3c1593499807e5c8e972b82c8f286 (tag: v0.9)</span><br><span class="line">Author: Michael Liao &lt;askxuefeng@gmail.com&gt;</span><br><span class="line">Date:   Fri May 18 21:56:54 2018 +0800</span><br><span class="line"></span><br><span class="line">    add merge</span><br><span class="line"></span><br><span class="line">diff --git a&#x2F;readme.txt b&#x2F;readme.txt</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>创建带有说明的标签，用<code>-a</code>指定标签名，<code>-m</code>指定说明文字：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git tag -a v1.0 -m &quot;version 1.0 released&quot; 1094abd</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>命令<code>git tag </code>用于新建一个标签，默认为<code>HEAD</code>，也可以指定一个commit id；</li>
+<li>命令<code>git tag -a  -m &quot;blablabla...&quot;</code>可以指定标签信息；</li>
+<li>命令<code>git tag</code>可以查看所有标签。</li>
+</ul>
+<h3 id="操作标签"><a href="#操作标签" class="headerlink" title="操作标签"></a>操作标签</h3><p>打错标签 需要删除：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git tag -d v1.0</span><br></pre></td></tr></table></figure>
+
+<p>因为创建的标签都只存储在本地，不会自动推送到远程。所以，打错的标签可以在本地安全删除。</p>
+<p>如果要推送某个标签到远程，使用命令<code>git push origin </code></p>
+<p>一次性推送全部尚未推送到远程的本地标签：<code>git push origin --tags</code></p>
+<p>如果tag已经推送到远程，要删除远程tag：</p>
+<p>先删除本地：<code>git tag -d v1.0</code></p>
+<p>删除远程：<code>git push origin :refs/tags/v1.0</code></p>
+<ul>
+<li>命令<code>git push origin </code>可以推送一个本地标签；</li>
+<li>命令<code>git push origin --tags</code>可以推送全部未推送过的本地标签；</li>
+<li>命令<code>git tag -d </code>可以删除一个本地标签；</li>
+<li>命令<code>git push origin :refs/tags/</code>可以删除一个远程标签。</li>
+</ul>
+<p>以上参考网站：<a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/896043488029600">廖雪峰git</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/10/31/demo/" data-id="ckgx4mguh0000qk7d3aazaehw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/31/hello-world/" class="article-date">
+  <time datetime="2020-10-31T03:01:10.249Z" itemprop="datePublished">2020-10-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/31/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/10/31/hello-world/" data-id="ckgx4mgup0001qk7dbs183zjp" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/31/demo/">demo</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/31/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
