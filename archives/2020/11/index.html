@@ -6,7 +6,7 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>一二</title>
+  <title>Archives: 2020/11 | 一二</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
   <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
@@ -25,7 +25,7 @@
   </style>
   <meta property="og:type" content="website">
 <meta property="og:title" content="一二">
-<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:url" content="http://example.com/archives/2020/11/index.html">
 <meta property="og:site_name" content="一二">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="一二">
@@ -174,79 +174,35 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-algorithm/zcy_minCoins" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/11/algorithm/zcy_minCoins/">换钱的最少货币数</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/11/algorithm/zcy_minCoins/" class="archive-article-date">
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2020/11/11/algorithm/zcy_minCoins/" class="archive-article-date">
   	<time datetime="2020-11-11T02:26:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-11</time>
 </a>
 
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="换钱的最少货币数"><a href="#换钱的最少货币数" class="headerlink" title="换钱的最少货币数"></a>换钱的最少货币数</h1><p>题目：给定数组数组arr，arr中所有的值都为正整数。每一个值代表一种面值的货币，每种面值的货币可以使用任意张，在给定一个整数aim代表要找的钱数，求组成aim最少货币数。</p>
-<p>例如：</p>
-<p>输入：arr = [5,2,3],aim = 20</p>
-<p>输出：4</p>
-<p><strong>4张5元可以组成20，为最小值</strong></p>
-<p>输入：arr = [5,2,3],aim = 0</p>
-<p>输出：0</p>
-<p><strong>不用任何货币就可以组成0元 ，返回0</strong></p>
-<p>输入：arr = [3,5],aim = 2</p>
-<p>输出-1</p>
-<p><strong>无法组成2元，返回-1</strong></p>
-<p><strong>解答</strong>：</p>
-<p>​        如果arr的长度为N,总的货币数为aim,创建一个DP数组，该数组的行数为N,列数为aim+1。dp[i][j]数组的含义是，可以在任意使用arr[0…i]货币的情况下，组成j所需要的最小张数。根据这个定义，dp[i][j]的计算方式为：</p>
-<p>1、dp[0…N-1] <a href="DP%E7%9F%A9%E9%98%B5%E7%9A%84%E7%AC%AC%E4%B8%80%E5%88%97%E5%80%BC">0</a>表示要找的货币为0所需要的的最小货币张数，钱数为0时，完全不需要货币，所以第一列全部置为0.</p>
-<p>2、dp[0] <a href="DP%E7%9F%A9%E9%98%B5%E7%9A%84%E7%AC%AC%E4%B8%80%E8%A1%8C">1…aim</a> 表示只能使用arr[0]的情况下，找某个钱数的最小张数，</p>
-<p>比如，arr[0] = 2,则dp[0][2]=1,dp[0][4] = 2,dp[0][6] = 3…..   第一行其他的钱数一律为找不开置为32位integer</p>
-<p>3、剩下的依次从左到右，从上到下计算，推导出状态转移表达式：</p>
-<p>dp[i][j] = min(dp[i-1][j],dp[i][j-arr[i] +1])</p>
-<p>代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 每种面值的货币可使用任意张</span></span><br><span class="line"><span class="comment"> * 时间复杂度 O(N*aim)</span></span><br><span class="line"><span class="comment"> * 空间复杂度O(N*aim)</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> arr</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> aim</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">minCoins1</span><span class="params">(<span class="keyword">int</span> [] arr,<span class="keyword">int</span> aim)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length == <span class="number">0</span> || aim &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> n = arr.length;</span><br><span class="line">    <span class="keyword">int</span> max = Integer.MAX_VALUE;</span><br><span class="line">    <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n][aim+<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= aim; i++) &#123;</span><br><span class="line">        dp[<span class="number">0</span>][i] = max;</span><br><span class="line">        <span class="keyword">if</span> (i - arr[<span class="number">0</span>] &gt;= <span class="number">0</span> &amp;&amp; dp[<span class="number">0</span>][i - arr[<span class="number">0</span>]] != max)&#123;</span><br><span class="line">            dp[<span class="number">0</span>][i] = dp[<span class="number">0</span>][i-arr[<span class="number">0</span>]] + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= aim; j++) &#123;</span><br><span class="line">            left = max;</span><br><span class="line">            <span class="keyword">if</span> (j - arr[i] &gt;= <span class="number">0</span> &amp;&amp; dp[i][j - arr[i]] != max)</span><br><span class="line">                left = dp[i][j-arr[i]] + <span class="number">1</span>;</span><br><span class="line">            dp[i][j] = Math.min(left,dp[i-<span class="number">1</span>][j]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[n-<span class="number">1</span>][aim] != max ? dp[n-<span class="number">1</span>][aim]:-<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/11/11/algorithm/zcy_minCoins/">换钱的最少货币数</a>
+    </h1>
+  
 
-<p>矩阵压缩后如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 每种面值的货币可使用任意张</span></span><br><span class="line"><span class="comment"> * 时间复杂度 O(N*aim)</span></span><br><span class="line"><span class="comment"> * 空间复杂度 O(aim) dp矩阵压缩</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> arr</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> aim</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">minCoins2</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> aim)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length == <span class="number">0</span> || aim &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[aim + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">int</span> max = Integer.MAX_VALUE;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= aim; i++)&#123;</span><br><span class="line">        dp[i] = max;</span><br><span class="line">        <span class="keyword">if</span> (i-arr[<span class="number">0</span>] &gt;= <span class="number">0</span> &amp;&amp; dp[i-arr[<span class="number">0</span>]] != max)</span><br><span class="line">            dp[i] = dp[i-arr[<span class="number">0</span>]] + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= aim; j++) &#123;</span><br><span class="line">            left = max;</span><br><span class="line">            <span class="keyword">if</span> (j-arr[i] &gt;= <span class="number">0</span> &amp;&amp; dp[j-arr[i]] != max)&#123;</span><br><span class="line">                left = dp[j-arr[i]] + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            dp[j] = Math.min(left,dp[j]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[aim]!=max ? dp[aim] : -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="拓展题目"><a href="#拓展题目" class="headerlink" title="拓展题目"></a>拓展题目</h4><p>题目：给定数组数组arr，arr中所有的值都为正整数。每一个值代表一种面值的货币，每种面值的货币可以使用一张，在给定一个整数aim代表要找的钱数，求组成aim最少货币数。</p>
-<p>例如：</p>
-<p>输入：arr = [5,2,3],aim = 20</p>
-<p>输出：-1</p>
-<p><strong>5元，2元，3元各有一张，所以无法组成，返回-1</strong></p>
-<p>输入：arr = [5,2,3,5],aim = 10</p>
-<p>输出：2</p>
-<p><strong>5元的货币有两张，可以组成10元 ，返回2</strong></p>
-<p>输入：arr = [5,2,,3,5],aim = 15</p>
-<p>输出4</p>
-<p><strong>2元，3元各有一张，5元有两张，可以组成20，返回4</strong></p>
-<p>输入：arr = [5,2,3],aim = 0</p>
-<p>输出：0</p>
-<p><strong>不用任何货币就可以组成0元，返回0</strong></p>
-<h5 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h5><p>1、dp矩阵第一列，全部为0</p>
-<p>2、dp矩阵第一行，当aim = arr[0]时，dp[0][arr[0]] = 1,其余全部为INTEGER.MAX_VALUE</p>
-<p>3、递推公式：dp[i][j] = min(dp[i-1][j],dp[i-1][j-arr[0]]+1)</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 每种面值的货币只能使用一张</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> arr</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> aim</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">minCoins3</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> aim)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(arr == <span class="keyword">null</span> || arr.length == <span class="number">0</span> || aim &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> n = arr.length;</span><br><span class="line">    <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n][aim+<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">int</span> max = Integer.MAX_VALUE;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= aim; i++) &#123;</span><br><span class="line">        dp[<span class="number">0</span>][i] = max;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (arr[<span class="number">0</span>] &lt;= aim)</span><br><span class="line">        dp[<span class="number">0</span>][arr[<span class="number">0</span>]] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= aim; j++) &#123;</span><br><span class="line">            left = max;</span><br><span class="line">            <span class="keyword">if</span> (j - arr[i] &gt;= <span class="number">0</span> &amp;&amp; dp[i-<span class="number">1</span>][j-arr[i]] != max)&#123;</span><br><span class="line">                left = dp[i-<span class="number">1</span>][j-arr[i]] +<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            dp[i][j] = Math.min(left,dp[i-<span class="number">1</span>][j]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[n-<span class="number">1</span>][aim] != max ? dp[n-<span class="number">1</span>][aim] : -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>矩阵压缩，空间复杂度优化：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 每种面值的货币只能用一张</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> arr</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> aim</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">minCoins4</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> aim)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(arr == <span class="keyword">null</span> || arr.length == <span class="number">0</span> || aim &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> n = arr.length;</span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[aim+<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">int</span> max = Integer.MAX_VALUE;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= aim; i++) &#123;</span><br><span class="line">        dp[i] = max;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (arr[<span class="number">0</span>] &lt;= aim)</span><br><span class="line">        dp[arr[<span class="number">0</span>]] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = aim; j &gt; <span class="number">0</span>; j--) &#123;</span><br><span class="line">            left = max;</span><br><span class="line">            <span class="keyword">if</span> (j - arr[i] &gt;= <span class="number">0</span> &amp;&amp; dp[j-arr[i]] != max)&#123;</span><br><span class="line">                left = dp[j-arr[i]] +<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            dp[j] = Math.min(left,dp[j]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[aim] != max ? dp[aim] : -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -258,43 +214,19 @@
 		</ul>
 	</div>
 
-      
+          
 
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/11/algorithm/zcy_minCoins/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-
   
   
+    </div></section>
+  
+
+    
 
 
           </div>
@@ -326,9 +258,9 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
+		isHome: false,
 		isPost: false,
-		isArchive: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
